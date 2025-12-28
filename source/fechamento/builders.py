@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-from source.fechamento.types import *
+from .types import *
 from typing import Dict, Optional
 from abc import ABC, abstractmethod
 
@@ -58,32 +58,21 @@ class InfofechamentoXmlBuilder(XmlBuilderInterface):
         XmlAdapter.append_child(el, 'dtInicio', str(obj.dtInicio))
         XmlAdapter.append_child(el, 'dtFim', str(obj.dtFim))
         XmlAdapter.append_child(el, 'sitEspecial', str(obj.sitEspecial))
+        if obj.nadaADeclarar: XmlAdapter.append_child(el, 'nadaADeclarar', str(obj.nadaADeclarar))
         return el
 
 
 class FechamentoppXmlBuilder(XmlBuilderInterface):
     def build(self, obj: Fechamentopp) -> ET.Element:
         el = XmlAdapter.create_element("FechamentoPP")
-        if obj.FechamentoMes:
-            for item in obj.FechamentoMes:
-                el.append(FechamentomesXmlBuilder().build(item))
-        return el
-
-
-class FechamentomesXmlBuilder(XmlBuilderInterface):
-    def build(self, obj: Fechamentomes) -> ET.Element:
-        el = XmlAdapter.create_element("FechamentoMes")
-        XmlAdapter.append_child(el, 'anoMesCaixa', str(obj.anoMesCaixa))
-        XmlAdapter.append_child(el, 'quantArqTrans', str(obj.quantArqTrans))
+        XmlAdapter.append_child(el, 'FechamentoPP', str(obj.FechamentoPP))
         return el
 
 
 class FechamentomovopfinXmlBuilder(XmlBuilderInterface):
     def build(self, obj: Fechamentomovopfin) -> ET.Element:
         el = XmlAdapter.create_element("FechamentoMovOpFin")
-        if obj.FechamentoMes:
-            for item in obj.FechamentoMes:
-                el.append(FechamentomesXmlBuilder().build(item))
+        XmlAdapter.append_child(el, 'FechamentoMovOpFin', str(obj.FechamentoMovOpFin))
         if obj.EntDecExterior: el.append(EntdecexteriorXmlBuilder().build(obj.EntDecExterior))
         if obj.EntPatDecExterior:
             for item in obj.EntPatDecExterior:
@@ -112,13 +101,7 @@ class EntpatdecexteriorXmlBuilder(XmlBuilderInterface):
 class FechamentomovopfinanualXmlBuilder(XmlBuilderInterface):
     def build(self, obj: Fechamentomovopfinanual) -> ET.Element:
         el = XmlAdapter.create_element("FechamentoMovOpFinAnual")
-        el.append(FechamentoanoXmlBuilder().build(obj.FechamentoAno))
+        XmlAdapter.append_child(el, 'FechamentoMovOpFinAnual', str(obj.FechamentoMovOpFinAnual))
         return el
 
 
-class FechamentoanoXmlBuilder(XmlBuilderInterface):
-    def build(self, obj: Fechamentoano) -> ET.Element:
-        el = XmlAdapter.create_element("FechamentoAno")
-        XmlAdapter.append_child(el, 'anoCaixa', str(obj.anoCaixa))
-        XmlAdapter.append_child(el, 'quantArqTrans', str(obj.quantArqTrans))
-        return el

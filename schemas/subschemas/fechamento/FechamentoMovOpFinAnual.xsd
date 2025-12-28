@@ -3,24 +3,17 @@
   <xs:element name="FechamentoMovOpFinAnual">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="FechamentoAno">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="anoCaixa">
-                <xs:annotation>
-                  <xs:documentation>Ano Caixa</xs:documentation>
-                </xs:annotation>
-                <xs:simpleType>
-                  <xs:restriction base="xs:string"/>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="quantArqTrans">
-                <xs:simpleType>
-                  <xs:restriction base="xs:unsignedLong"/>
-                </xs:simpleType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
+        <xs:element name="FechamentoMovOpFinAnual">
+          <xs:annotation>
+            <xs:documentation>
+                          Indicador de Fechamento de Operação Financeira Anual, com ou sem movimento no período:
+                          0 - e-Financeira sem movimento de Operação Financeira Anual no período
+                          1 - e-Financeira com movimento de Operação Financeira Anual no período
+                        </xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:unsignedByte"/>
+          </xs:simpleType>
         </xs:element>
       </xs:sequence>
     </xs:complexType>

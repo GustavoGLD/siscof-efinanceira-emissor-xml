@@ -87,7 +87,7 @@ class Cnpjdeclarante:
 
 
 class Dtinicio:
-    """Data Inicial"""
+    """Data Inicial no formato AAAA-MM-DD"""
     def __init__(self, value: str):
         pass
         self.value = value
@@ -101,7 +101,7 @@ class Dtinicio:
 
 
 class Dtfim:
-    """Data Final"""
+    """Data Final no formato AAAA-MM-DD"""
     def __init__(self, value: str):
         pass
         self.value = value
@@ -115,7 +115,7 @@ class Dtfim:
 
 
 class Sitespecial:
-    """Indicador de Situacao Especial 0 = Nao se aplica 1 = Extincao 2 = Fusao 3 = Incorporacao/Incorporada 5 = Cisao Total"""
+    """Indicador de Situacao Especial 0 - Nao se aplica 1 - Extincao 2 - Fusao 3 - Incorporacao/Incorporada 5 - Cisao Total"""
     def __init__(self, value: str):
         pass
         self.value = value
@@ -128,28 +128,14 @@ class Sitespecial:
         return str(self.value)
 
 
-class Anomescaixa:
-    """Ano e Mes Caixa"""
+class Nadaadeclarar:
+    """Indicador de nada a declarar no periodo: 1 - nada a declarar no periodo"""
     def __init__(self, value: str):
         pass
         self.value = value
 
     @classmethod
-    def from_str(cls, val: str) -> "Anomescaixa":
-        return cls(val)
-
-    def __str__(self):
-        return str(self.value)
-
-
-class Quantarqtrans:
-    """"""
-    def __init__(self, value: str):
-        pass
-        self.value = value
-
-    @classmethod
-    def from_str(cls, val: str) -> "Quantarqtrans":
+    def from_str(cls, val: str) -> "Nadaadeclarar":
         return cls(val)
 
     def __str__(self):
@@ -226,20 +212,6 @@ class Ingiinencerrado:
         return str(self.value)
 
 
-class Anocaixa:
-    """Ano Caixa"""
-    def __init__(self, value: str):
-        pass
-        self.value = value
-
-    @classmethod
-    def from_str(cls, val: str) -> "Anocaixa":
-        return cls(val)
-
-    def __str__(self):
-        return str(self.value)
-
-
 class Efinanceira:
     """"""
     def __init__(self, evtFechamentoeFinanceira: "Evtfechamentoefinanceira", Signature: "Signature"):
@@ -277,29 +249,23 @@ class Idedeclarante:
 
 class Infofechamento:
     """"""
-    def __init__(self, dtInicio: "Dtinicio", dtFim: "Dtfim", sitEspecial: "Sitespecial"):
+    def __init__(self, dtInicio: "Dtinicio", dtFim: "Dtfim", sitEspecial: "Sitespecial", nadaADeclarar: Optional["Nadaadeclarar"]):
         self.dtInicio = dtInicio
         self.dtFim = dtFim
         self.sitEspecial = sitEspecial
+        self.nadaADeclarar = nadaADeclarar
 
 
 class Fechamentopp:
     """"""
-    def __init__(self, FechamentoMes: List["Fechamentomes"]):
-        self.FechamentoMes = FechamentoMes
-
-
-class Fechamentomes:
-    """"""
-    def __init__(self, anoMesCaixa: "Anomescaixa", quantArqTrans: "Quantarqtrans"):
-        self.anoMesCaixa = anoMesCaixa
-        self.quantArqTrans = quantArqTrans
+    def __init__(self, FechamentoPP: "Fechamentopp"):
+        self.FechamentoPP = FechamentoPP
 
 
 class Fechamentomovopfin:
     """"""
-    def __init__(self, FechamentoMes: List["Fechamentomes"], EntDecExterior: Optional["Entdecexterior"], EntPatDecExterior: Optional[List["Entpatdecexterior"]]):
-        self.FechamentoMes = FechamentoMes
+    def __init__(self, FechamentoMovOpFin: "Fechamentomovopfin", EntDecExterior: Optional["Entdecexterior"], EntPatDecExterior: Optional[List["Entpatdecexterior"]]):
+        self.FechamentoMovOpFin = FechamentoMovOpFin
         self.EntDecExterior = EntDecExterior
         self.EntPatDecExterior = EntPatDecExterior
 
@@ -322,15 +288,8 @@ class Entpatdecexterior:
 
 class Fechamentomovopfinanual:
     """"""
-    def __init__(self, FechamentoAno: "Fechamentoano"):
-        self.FechamentoAno = FechamentoAno
-
-
-class Fechamentoano:
-    """"""
-    def __init__(self, anoCaixa: "Anocaixa", quantArqTrans: "Quantarqtrans"):
-        self.anoCaixa = anoCaixa
-        self.quantArqTrans = quantArqTrans
+    def __init__(self, FechamentoMovOpFinAnual: "Fechamentomovopfinanual"):
+        self.FechamentoMovOpFinAnual = FechamentoMovOpFinAnual
 
 
 class Signature:

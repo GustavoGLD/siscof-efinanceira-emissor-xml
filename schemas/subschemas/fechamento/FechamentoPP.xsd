@@ -3,24 +3,17 @@
   <xs:element name="FechamentoPP">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="FechamentoMes" maxOccurs="unbounded">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="anoMesCaixa">
-                <xs:annotation>
-                  <xs:documentation>Ano e Mês Caixa</xs:documentation>
-                </xs:annotation>
-                <xs:simpleType>
-                  <xs:restriction base="xs:string"/>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="quantArqTrans">
-                <xs:simpleType>
-                  <xs:restriction base="xs:unsignedLong"/>
-                </xs:simpleType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
+        <xs:element name="FechamentoPP">
+          <xs:annotation>
+            <xs:documentation>
+                          Indicador de Fechamento da Previdência Privada, com ou sem movimento no período:
+                          0 - e-Financeira sem movimento de Previdência Privada no período
+                          1 - e-Financeira com movimento de Previdência Privada no período
+                        </xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:unsignedByte"/>
+          </xs:simpleType>
         </xs:element>
       </xs:sequence>
     </xs:complexType>

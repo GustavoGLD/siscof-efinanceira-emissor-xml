@@ -3,24 +3,17 @@
   <xs:element name="FechamentoMovOpFin">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="FechamentoMes" maxOccurs="unbounded">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="anoMesCaixa">
-                <xs:annotation>
-                  <xs:documentation>Ano e Mês Caixa</xs:documentation>
-                </xs:annotation>
-                <xs:simpleType>
-                  <xs:restriction base="xs:string"/>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="quantArqTrans">
-                <xs:simpleType>
-                  <xs:restriction base="xs:unsignedLong"/>
-                </xs:simpleType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
+        <xs:element name="FechamentoMovOpFin">
+          <xs:annotation>
+            <xs:documentation>
+                          Indicador de Fechamento de Operação Financeira, com ou sem movimento no período:
+                          0 - e-Financeira sem movimento de Operação Financeira no período
+                          1 - e-Financeira com movimento de Operação Financeira no período
+                        </xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:unsignedByte"/>
+          </xs:simpleType>
         </xs:element>
         <xs:element name="EntDecExterior" minOccurs="0">
           <xs:complexType>

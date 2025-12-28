@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.eFinanceira.gov.br/schemas/evtFechamentoeFinanceira/v1_2_2" targetNamespace="http://www.eFinanceira.gov.br/schemas/evtFechamentoeFinanceira/v1_2_2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.eFinanceira.gov.br/schemas/evtFechamentoeFinanceira/v1_3_0" targetNamespace="http://www.eFinanceira.gov.br/schemas/evtFechamentoeFinanceira/v1_3_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="../../Comum/xmldsig-core-schema.xsd"/>
   <xs:element name="eFinanceira">
     <xs:complexType>
@@ -23,7 +23,6 @@
                             Indicativo de Retificação:
                             1 - Original
                             2 - Retificador
-                            3 - Retificador a Pedido
                           </xs:documentation>
                         </xs:annotation>
                         <xs:restriction base="xs:unsignedInt">
@@ -97,7 +96,7 @@
                       </xs:annotation>
                       <xs:simpleType>
                         <xs:restriction base="xs:string">
-                          <xs:minLength value="1"/>
+                          <xs:minLength value="8"/>
                           <xs:maxLength value="14"/>
                         </xs:restriction>
                       </xs:simpleType>
@@ -113,7 +112,7 @@
                   <xs:sequence>
                     <xs:element name="dtInicio" minOccurs="1" maxOccurs="1">
                       <xs:annotation>
-                        <xs:documentation>Data Inicial</xs:documentation>
+                        <xs:documentation>Data Inicial no formato AAAA-MM-DD</xs:documentation>
                       </xs:annotation>
                       <xs:simpleType>
                         <xs:restriction base="xs:date">
@@ -122,7 +121,7 @@
                     </xs:element>
                     <xs:element name="dtFim" minOccurs="1" maxOccurs="1">
                       <xs:annotation>
-                        <xs:documentation>Data Final</xs:documentation>
+                        <xs:documentation>Data Final no formato AAAA-MM-DD</xs:documentation>
                       </xs:annotation>
                       <xs:simpleType>
                         <xs:restriction base="xs:date">
@@ -133,16 +132,30 @@
                       <xs:annotation>
                         <xs:documentation>
                           Indicador de Situação Especial
-                          0 = Não se aplica
-                          1 = Extinção
-                          2 = Fusão
-                          3 = Incorporação/Incorporada
-                          5 = Cisão Total
+                          0 - Não se aplica
+                          1 - Extinção
+                          2 - Fusão
+                          3 - Incorporação/Incorporada
+                          5 - Cisão Total
                         </xs:documentation>
                       </xs:annotation>
                       <xs:simpleType>
                         <xs:restriction base="xs:unsignedInt">                          
                           <xs:pattern value="[0|1|2|3|5]"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="nadaADeclarar" minOccurs="0" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>
+                          Indicador de nada a declarar no período:
+                          1 - nada a declarar no período
+                        </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:unsignedByte">
+                          <xs:totalDigits value="1"/>
+                          <xs:pattern value="1"/>
                         </xs:restriction>
                       </xs:simpleType>
                     </xs:element>
@@ -154,37 +167,22 @@
                   <xs:annotation>
                     <xs:documentation>Informações do Fechamento referentes a Previdência Privada</xs:documentation>
                   </xs:annotation>
-                  <xs:sequence>                    
-                    <xs:element name="FechamentoMes" minOccurs="1" maxOccurs="unbounded">
-                      <xs:complexType>
-                        <xs:annotation>
-                          <xs:documentation>Fechamento do Mês</xs:documentation>
-                        </xs:annotation>
-                        <xs:sequence>                          
-                          <xs:element name="anoMesCaixa" minOccurs="1" maxOccurs="1">
-                            <xs:annotation>
-                              <xs:documentation>Ano e Mês Caixa</xs:documentation>
-                            </xs:annotation>
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:length value="6"/>
-                                <xs:pattern value="20([0-9][0-9])(0[1-9]|1[0-3])"/> <!--yyyymm aceitando mês 13 também por causa do 13o-->
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>                        
-                          <xs:element name="quantArqTrans" minOccurs="1" maxOccurs="1">
-                            <xs:simpleType>
-                              <xs:annotation>
-                                <xs:documentation>Quantidade de Arquivos Transmitidos no Mês</xs:documentation>
-                              </xs:annotation>
-                              <xs:restriction base="xs:unsignedLong">
-                                <xs:totalDigits value="9"/>
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>                  
+                  <xs:sequence>
+                    <xs:element name="FechamentoPP" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>
+                          Indicador de Fechamento da Previdência Privada, com ou sem movimento no período:
+                          0 - e-Financeira sem movimento de Previdência Privada no período
+                          1 - e-Financeira com movimento de Previdência Privada no período
+                        </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:unsignedByte">
+                          <xs:totalDigits value="1"/>
+                          <xs:pattern value="[0|1]"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -193,36 +191,21 @@
                   <xs:annotation>
                     <xs:documentation>Informações do Fechamento referentes a Operações Financeiras</xs:documentation>
                   </xs:annotation>
-                  <xs:sequence>                    
-                    <xs:element name="FechamentoMes" minOccurs="1" maxOccurs="unbounded">
-                      <xs:complexType>
-                        <xs:annotation>
-                          <xs:documentation>Fechamento do Mês</xs:documentation>
-                        </xs:annotation>
-                        <xs:sequence>                          
-                          <xs:element name="anoMesCaixa" minOccurs="1" maxOccurs="1">
-                            <xs:annotation>
-                              <xs:documentation>Ano e Mês Caixa</xs:documentation>
-                            </xs:annotation>
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:length value="6"  />
-                                <xs:pattern value="20([0-9][0-9])(0[1-9]|1[0-3])"/> <!--yyyymm aceitando mês 13 também por causa do 13o-->
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>                          
-                          <xs:element name="quantArqTrans" minOccurs="1" maxOccurs="1">
-                            <xs:simpleType>
-                              <xs:annotation>
-                                <xs:documentation>Quantidade de Arquivos Transmitidos no Mês</xs:documentation>
-                              </xs:annotation>
-                              <xs:restriction base="xs:unsignedLong">
-                                <xs:totalDigits value="9"/>
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>                          
-                        </xs:sequence>
-                      </xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="FechamentoMovOpFin" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>
+                          Indicador de Fechamento de Operação Financeira, com ou sem movimento no período:
+                          0 - e-Financeira sem movimento de Operação Financeira no período
+                          1 - e-Financeira com movimento de Operação Financeira no período
+                        </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:unsignedByte">
+                          <xs:totalDigits value="1"/>
+                          <xs:pattern value="[0|1]"/>
+                        </xs:restriction>
+                      </xs:simpleType>
                     </xs:element>
                     <xs:element name="EntDecExterior" minOccurs="0" maxOccurs="1">
                       <xs:complexType>
@@ -269,7 +252,7 @@
                             </xs:annotation>
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
-                                <xs:minLength value="1"/>
+                                <xs:minLength value="8"/>
                                 <xs:maxLength value="14"/>
                               </xs:restriction>
                             </xs:simpleType>
@@ -285,28 +268,28 @@
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
-						  <xs:element name="inCadPatrocinadoEncerrado" minOccurs="0" maxOccurs="1">
-							  <xs:annotation>
-								  <xs:documentation>O fundo foi encerrado e não serão enviadas contas para este fundo</xs:documentation>
-						  	  </xs:annotation>
-							  <xs:simpleType>
-								  <xs:restriction base="xs:unsignedByte">
-								      <xs:totalDigits value="1"/>
-									  <xs:pattern value="[1]"/>
-								  </xs:restriction>
-							  </xs:simpleType>
-						  </xs:element>
-						  <xs:element name="inGIINEncerrado" minOccurs="0" maxOccurs="1">
-							  <xs:annotation>
-							      <xs:documentation>O GIIN foi encerrado no IRS</xs:documentation>
-							  </xs:annotation>
-							  <xs:simpleType>
-								  <xs:restriction base="xs:unsignedByte">
-									  <xs:totalDigits value="1"/>
-								      <xs:pattern value="[1]"/>
-								  </xs:restriction>
-							  </xs:simpleType>
-						  </xs:element>							
+            						  <xs:element name="inCadPatrocinadoEncerrado" minOccurs="0" maxOccurs="1">
+            							  <xs:annotation>
+            								  <xs:documentation>O fundo foi encerrado e não serão enviadas contas para este fundo</xs:documentation>
+            						  	  </xs:annotation>
+            							  <xs:simpleType>
+            								  <xs:restriction base="xs:unsignedByte">
+            								      <xs:totalDigits value="1"/>
+            									  <xs:pattern value="[1]"/>
+            								  </xs:restriction>
+            							  </xs:simpleType>
+            						  </xs:element>
+            						  <xs:element name="inGIINEncerrado" minOccurs="0" maxOccurs="1">
+            							  <xs:annotation>
+            							      <xs:documentation>O GIIN foi encerrado no IRS</xs:documentation>
+            							  </xs:annotation>
+            							  <xs:simpleType>
+            								  <xs:restriction base="xs:unsignedByte">
+            									  <xs:totalDigits value="1"/>
+            								      <xs:pattern value="[1]"/>
+            								  </xs:restriction>
+            							  </xs:simpleType>
+            						  </xs:element>							
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
@@ -319,35 +302,20 @@
                     <xs:documentation>Informações do Fechamento referentes a Operações Financeiras Anual</xs:documentation>
                   </xs:annotation>
                   <xs:sequence>
-                    <xs:element name="FechamentoAno" minOccurs="1" maxOccurs="1">
-                      <xs:complexType>
-                        <xs:annotation>
-                          <xs:documentation>Fechamento do Ano</xs:documentation>
-                        </xs:annotation>
-                        <xs:sequence>
-                          <xs:element name="anoCaixa" minOccurs="1" maxOccurs="1">
-                            <xs:annotation>
-                              <xs:documentation>Ano Caixa</xs:documentation>
-                            </xs:annotation>
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:length value="4"  />
-                                <xs:pattern value="20([0-9][0-9])"/>
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                          <xs:element name="quantArqTrans" minOccurs="1" maxOccurs="1">
-                            <xs:simpleType>
-                              <xs:annotation>
-                                <xs:documentation>Quantidade de Arquivos Transmitidos no Ano</xs:documentation>
-                              </xs:annotation>
-                              <xs:restriction base="xs:unsignedLong">
-                                <xs:totalDigits value="9"/>
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
+                    <xs:element name="FechamentoMovOpFinAnual" minOccurs="1" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>
+                          Indicador de Fechamento de Operação Financeira Anual, com ou sem movimento no período:
+                          0 - e-Financeira sem movimento de Operação Financeira Anual no período
+                          1 - e-Financeira com movimento de Operação Financeira Anual no período
+                        </xs:documentation>
+                      </xs:annotation>
+                      <xs:simpleType>
+                        <xs:restriction base="xs:unsignedByte">
+                          <xs:totalDigits value="1"/>
+                          <xs:pattern value="[0|1]"/>
+                        </xs:restriction>
+                      </xs:simpleType>
                     </xs:element>
                   </xs:sequence>
                 </xs:complexType>
@@ -355,7 +323,7 @@
             </xs:sequence>
             <xs:attribute name="id" use="required" >
               <xs:annotation>
-                <xs:documentation>Identificador que representa unicamente o evento no sistema para a mesma empresa.</xs:documentation>
+                <xs:documentation>Identificador que representa unicamente o evento no sistema para a mesma empresa e tipo de evento.</xs:documentation>
               </xs:annotation>
               <xs:simpleType>
                 <xs:restriction base="xs:ID">

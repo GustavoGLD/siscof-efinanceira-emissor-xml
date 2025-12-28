@@ -5,7 +5,7 @@
       <xs:sequence>
         <xs:element name="dtInicio">
           <xs:annotation>
-            <xs:documentation>Data Inicial</xs:documentation>
+            <xs:documentation>Data Inicial no formato AAAA-MM-DD</xs:documentation>
           </xs:annotation>
           <xs:simpleType>
             <xs:restriction base="xs:date"/>
@@ -13,7 +13,7 @@
         </xs:element>
         <xs:element name="dtFim">
           <xs:annotation>
-            <xs:documentation>Data Final</xs:documentation>
+            <xs:documentation>Data Final no formato AAAA-MM-DD</xs:documentation>
           </xs:annotation>
           <xs:simpleType>
             <xs:restriction base="xs:date"/>
@@ -23,15 +23,26 @@
           <xs:annotation>
             <xs:documentation>
                           Indicador de Situação Especial
-                          0 = Não se aplica
-                          1 = Extinção
-                          2 = Fusão
-                          3 = Incorporação/Incorporada
-                          5 = Cisão Total
+                          0 - Não se aplica
+                          1 - Extinção
+                          2 - Fusão
+                          3 - Incorporação/Incorporada
+                          5 - Cisão Total
                         </xs:documentation>
           </xs:annotation>
           <xs:simpleType>
             <xs:restriction base="xs:unsignedInt"/>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="nadaADeclarar" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>
+                          Indicador de nada a declarar no período:
+                          1 - nada a declarar no período
+                        </xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:unsignedByte"/>
           </xs:simpleType>
         </xs:element>
       </xs:sequence>
