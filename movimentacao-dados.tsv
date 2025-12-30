@@ -1,0 +1,16 @@
+tpNI	NIDeclarado	NomeDeclarado	EnderecoLivre	numConta	anoMesCaixa	totCreditos	totDebitos	totPgtosAcum
+CNPJ	96873074000101	Luciana e Larissa Adega Ltda	Endereço Rua Rosa Broseghini Bairro Adalgisa Cidade Osasco Estado SP	1234|123|1234567890123	202301	318635.00	319284.00	1328000.00
+CNPJ	96873074000101	Luciana e Larissa Adega Ltda	Endereço Rua Rosa Broseghini Bairro Adalgisa Cidade Osasco Estado SP	1234|123|1234567890123	202302	293845.00	324983.00	1328000.00
+CNPJ	96873074000101	Luciana e Larissa Adega Ltda	Endereço Rua Rosa Broseghini Bairro Adalgisa Cidade Osasco Estado SP	1234|123|1234567890123	202303	125123.00	418360.00	1328000.00
+CNPJ	96873074000101	Luciana e Larissa Adega Ltda	Endereço Rua Rosa Broseghini Bairro Adalgisa Cidade Osasco Estado SP	1234|123|1234567890123	202304	418360.00	242783.00	1328000.00
+CNPJ	96873074000101	Luciana e Larissa Adega Ltda	Endereço Rua Rosa Broseghini Bairro Adalgisa Cidade Osasco Estado SP	1234|123|1234567890123	202305	242783.00	192864.00	1328000.00
+CNPJ	96873074000101	Luciana e Larissa Adega Ltda	Endereço Rua Rosa Broseghini Bairro Adalgisa Cidade Osasco Estado SP	1234|123|1234567890123	202306	324983.00	129474.00	1328000.00
+CPF	75191242076	João Henrique da Silva	Endereço Rua das Palmeiras Bairro Centro Cidade Campinas Estado SP	9876|321|0001234567890	202301	52340.00	48910.00	210000.00
+CPF	75191242076	João Henrique da Silva	Endereço Rua das Palmeiras Bairro Centro Cidade Campinas Estado SP	9876|321|0001234567890	202302	61125.00	59884.00	210000.00
+CPF	75191242076	João Henrique da Silva	Endereço Rua das Palmeiras Bairro Centro Cidade Campinas Estado SP	9876|321|0001234567890	202303	45780.00	51233.00	210000.00
+CNPJ	38560803000173	Mercado Bom Preço LTDA	Endereço Av Brasil Bairro Vila Nova Cidade Sorocaba Estado SP	4455|888|9876543210001	202301	812450.00	790332.00	3250000.00
+CNPJ	38560803000173	Mercado Bom Preço LTDA	Endereço Av Brasil Bairro Vila Nova Cidade Sorocaba Estado SP	4455|888|9876543210001	202302	734120.00	801900.00	3250000.00
+CNPJ	38560803000173	Mercado Bom Preço LTDA	Endereço Av Brasil Bairro Vila Nova Cidade Sorocaba Estado SP	4455|888|9876543210001	202303	825330.00	776415.00	3250000.00
+CPF	83501462069	Mariana Lopes Pereira	Endereço Rua dos Jasmins Bairro Jardim Europa Cidade Ribeirão Preto Estado SP	3322|110|5556667778889	202304	28945.00	31402.00	95000.00
+CPF	83501462069	Mariana Lopes Pereira	Endereço Rua dos Jasmins Bairro Jardim Europa Cidade Ribeirão Preto Estado SP	3322|110|5556667778889	202305	33180.00	29770.00	95000.00
+CPF	83501462069	Mariana Lopes Pereira	Endereço Rua dos Jasmins Bairro Jardim Europa Cidade Ribeirão Preto Estado SP	3322|110|5556667778889	202306	32875.00	34110.00	95000.00
