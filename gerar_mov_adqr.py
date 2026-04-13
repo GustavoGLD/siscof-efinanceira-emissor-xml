@@ -118,7 +118,7 @@ def _build_evt_from_row(line: dict, id_evento: int) -> ET.Element:
                                 )
                             ],
                             tpConta=Tpconta("1"),
-                            subTpConta=Subtpconta("199"),
+                            subTpConta=Subtpconta("106"),
                             tpNumConta=Tpnumconta("OECD605"),
                             numConta=Numconta(line["numConta"]),
                             tpRelacaoDeclarado=Tprelacaodeclarado("1"),
