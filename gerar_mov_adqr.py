@@ -70,8 +70,8 @@ while batch := handle.fetchmany(BATCH_SIZE):
                 cnpjDeclarante=Cnpjdeclarante(CNPJ_DECLARANTE),
             ),
             ideDeclarado=Idedeclarado(
-                tpNI=Tpni.from_descricao(line["tpNI"]),
-                NIDeclarado=Nideclarado(line["NIDeclarado"]),
+                tpNI=Tpni.from_str(line["tpNI"]),
+                NIDeclarado=Nideclarado(re.sub('[^0-9]', '', line["NIDeclarado"])),
                 PaisEndereco=Paisendereco(Pais("BR")),
                 NomeDeclarado=Nomedeclarado(line["NomeDeclarado"]),
                 tpDeclarado=None,

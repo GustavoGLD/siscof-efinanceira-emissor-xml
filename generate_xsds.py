@@ -89,9 +89,9 @@ def convert_type_to_etree(type_obj, parent, nsmap):
 
 # Função principal para gerar XSDs
 def generate_xsd_files():
-    schema_path = "schemas/evtCadPatrocinado-v1_2_0.xsd"
+    schema_path = r"C:\Users\lidio\PycharmProjects\siscof-efinanceira-emissor-xml\schemas\evtFechamentoeFinanceira-v1_3_0.xsd"
     schema = xmlschema.XMLSchema(schema_path)
-    output_dir = Path("generated_xsd")
+    output_dir = Path("schemas/subschemas/fechamento")
     output_dir.mkdir(exist_ok=True)
 
     processed = set()
