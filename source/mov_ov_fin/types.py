@@ -1,4 +1,5 @@
 import re
+from decimal import Decimal, ROUND_HALF_UP
 from typing import Optional, List, Literal
 
 
@@ -95,6 +96,15 @@ class Tpni:
     @classmethod
     def from_str(cls, val: str) -> "Tpni":
         return cls(val)
+
+    @classmethod
+    def from_descricao(cls, val: str) -> "Tpni":
+        if val.upper() == "CPF":
+            return cls("1")
+        elif val.upper() == "CNPJ":
+            return cls("2")
+        else:
+            raise ValueError(f'A descrição de TpNI deve ser "CPF" ou "CNPJ", e não: "{val}"')
 
     def __str__(self):
         return str(self.value)
@@ -824,6 +834,12 @@ class Totcreditos:
     def from_str(cls, val: str) -> "Totcreditos":
         return cls(val)
 
+    @classmethod
+    def from_decimal(cls, val: Decimal) -> "Totcreditos":
+        v = val.quantize(Decimal("0.00"), rounding=ROUND_HALF_UP)
+        s = format(v, "f").replace(".", ",")
+        return cls(s)
+
     def __str__(self):
         return str(self.value)
 
@@ -835,8 +851,9 @@ class Totdebitos:
         self.value = value
 
     @classmethod
-    def from_str(cls, val: str) -> "Totdebitos":
-        return cls(val)
+    def from_decimal(cls, val: Decimal) -> "Totdebitos":
+        s = format(val, "f").replace(".", ",")
+        return cls(s)
 
     def __str__(self):
         return str(self.value)
@@ -907,6 +924,13 @@ class Totpgtosacum:
     @classmethod
     def from_str(cls, val: str) -> "Totpgtosacum":
         return cls(val)
+
+    @classmethod
+    def from_decimal(cls, val: Decimal) -> "Totpgtosacum":
+        v = val.quantize(Decimal("0.00"), rounding=ROUND_HALF_UP)
+        s = format(v, "f").replace(".", ",")
+        return cls(s)
+
 
     def __str__(self):
         return str(self.value)

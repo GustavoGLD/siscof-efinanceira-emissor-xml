@@ -58,7 +58,7 @@ class IndRetificacao:
 
     3 Envio do Evento de Fechamento (Data Início 2016-01-01 e Data Fim 2016-30-06) – nrRecibo: 67890
 
-    Necessidade de retificação ou inclusão de novos arquivos de movimento, posteriores ao fechamento, para o mesmo
+    Necessidade de retificação ou inclusão de novos arquivos de movimento, posteriores ao __init__, para o mesmo
     período exemplificado acima:
 
     1 Retificação do Evento de Abertura (informar nrRecibo: 12345 e Data Início 2016-01-01 e Data Fim 2016-30-06)

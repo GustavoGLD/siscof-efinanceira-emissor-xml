@@ -318,7 +318,7 @@ class IndRetificacao:
 
     3 Envio do Evento de Fechamento (Data Início 2016-01-01 e Data Fim 2016-30-06) – nrRecibo: 67890
 
-    Necessidade de retificação ou inclusão de novos arquivos de movimento, posteriores ao fechamento, para o mesmo
+    Necessidade de retificação ou inclusão de novos arquivos de movimento, posteriores ao __init__, para o mesmo
     período exemplificado acima:
 
     1 Retificação do Evento de Abertura (informar nrRecibo: 12345 e Data Início 2016-01-01 e Data Fim 2016-30-06)
@@ -510,7 +510,7 @@ class ResponsavelEFinanceira:
 
     Caso tenha ocorrido mudança deste responsável durante o período de vigência da última abertura enviada (durante o período
     de declaração da e-Financeira), independentemente do período estar fechado ou não, deve-se retificar o “evtAberturaeFinanceira”.
-    Caso o período já tenha sido fechado, após essa retificação é necessário retificar o evento de fechamento para encerrar a
+    Caso o período já tenha sido fechado, após essa retificação é necessário retificar o evento de __init__ para encerrar a
     declaração novamente.
 
     Após informar essas mudanças na abertura de uma nova e-Financeira, não é mais necessário retificar essas informações
@@ -544,7 +544,7 @@ class ResponsavelRMF:
     Caso tenha ocorrido mudança dos Responsáveis pela RMF da entidade declarante durante o período de vigência da última
     abertura enviada (antes de ocorrer o próximo período de declaração da e-Financeira), independentemente de este período estar
     fechado ou não, essa informação deve ser retificada por meio do “evtAberturaeFinanceira”. Após essa retificação, é necessário
-    retificar o evento de fechamento, caso tenha sido enviado anteriormente, para encerrar a declaração novamente. Adicionalmente,
+    retificar o evento de __init__, caso tenha sido enviado anteriormente, para encerrar a declaração novamente. Adicionalmente,
     após informar essas mudanças na abertura de uma nova e-Financeira, não é mais necessário retificar essas informações nos
     eventos de abertura das e-Financeiras anteriores.
 
@@ -599,7 +599,7 @@ class EvtAberturaeFinanceira:
 
     - Envio do Evento de Fechamento (Data Início 2016-01-01 e Data Fim 2016-30-06) – nrRecibo: 67890
 
-    Necessidade de retificação ou inclusão de novos arquivos de movimento, posteriores ao fechamento, para o mesmo
+    Necessidade de retificação ou inclusão de novos arquivos de movimento, posteriores ao __init__, para o mesmo
     período exemplificado acima:
 
     - Retificação do Evento de Abertura (informar nrRecibo: 12345 e Data Início 2016-01-01 e Data Fim 2016-30-06)
@@ -649,7 +649,7 @@ class RepresLegal:
     Caso tenha ocorrido mudança do Representante Legal da entidade declarante durante o período de vigência da última
     abertura enviada (antes de ocorrer o próximo período de declaração da e-Financeira), independentemente de este período estar
     fechado ou não, essa informação deve ser retificada por meio do “evtAberturaeFinanceira”. Após essa retificação, é necessário
-    retificar o evento de fechamento, caso tenha sido enviado anteriormente, para encerrar a declaração novamente. Adicionalmente,
+    retificar o evento de __init__, caso tenha sido enviado anteriormente, para encerrar a declaração novamente. Adicionalmente,
     após informar essas mudanças na abertura de uma nova e-Financeira, não é mais necessário retificar essas informações nos
     eventos de abertura das e-Financeiras anteriores.
     """
@@ -792,7 +792,7 @@ class IdeEventoXmlBuilder(XmlBuilderInterface):
 
 class EvtAberturaeFinanceiraXmlBuilder(XmlBuilderInterface):
     def build(self, evt_abertura: EvtAberturaeFinanceira) -> ET.Element:
-        print(evt_abertura.id)
+        #print(evt_abertura.id)
         el_evt_abertura = XmlAdapter.create_element("evtAberturaeFinanceira", attrib={"id": str(evt_abertura.id)})
         el_ide_evento = IdeEventoXmlBuilder().build(evt_abertura.ideEvento)
         el_evt_abertura.append(el_ide_evento)

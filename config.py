@@ -1,4 +1,4 @@
-DB_FILE = "movimentacao-dados.tsv"
+DB_FILE = "efinanceira_pagou.tsv"
 BATCH_SIZE = 50
 OUTPUT_DIR = "out"
 CNPJ_DECLARANTE = "14115686000170"
